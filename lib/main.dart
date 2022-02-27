@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+// ignore: unused_import
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:easy_localization/easy_localization.dart';
 
@@ -7,9 +8,9 @@ Future<void> main() async {
   await EasyLocalization.ensureInitialized();
 
   runApp(EasyLocalization(
-    child: MyApp(),
+    child: const MyApp(),
     // 支援的語言
-    supportedLocales: [Locale('zh', 'CN'), Locale('en', 'US')],
+    supportedLocales: const [Locale('zh', 'CN'), Locale('en', 'US')],
     // 語言資源包目錄
     path: 'resources/langs',
   ));
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Hi, 國際化!'),
+      home: const MyHomePage(title: 'Hi, test 3 國際化!'),
     );
   }
 }
@@ -48,6 +49,10 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
         actions: <Widget>[
+          Container(
+            child: Text(tr("cur_lang")),
+            alignment: Alignment.center,
+          ),
           IconButton(
             icon: Icon(Icons.language),
             onPressed: () => showChangeLanguageDialog(),
@@ -74,7 +79,8 @@ class _MyHomePageState extends State<MyHomePage> {
         context: context,
         builder: (BuildContext context) {
           return SimpleDialog(
-            title: Text("Language"),
+            //title: Text("Language"),
+            title: Text(tr("language")),
             children: <Widget>[
               SimpleDialogOption(
                 child: Text("中文"),
